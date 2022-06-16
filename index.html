@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+  <title>官网2</title>
+  <script src="./js/ScrollMagic.min.js"></script>
+  <script src="./js/TweenMax.min.js"> </script>
+  <script src="./js/animation.gsap.js"></script>
+  <script src="./js/swiper-bundle.min.js"></script>
+  <link rel="stylesheet" href="./css/common.css">
+  <link rel="stylesheet" href="./css/swiper-bundle.min.css">
+  <link rel="stylesheet" href="./css/reset.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+    }
+
+    header {
+      width: 100%;
+      height: 100px;
+      background: #000;
+    }
+
+
+    .section1 {
+      background: red;
+      position: relative;
+    }
+
+    .anim {
+      width: 100px;
+      background-color: yellow;
+    }
+
+    .anim2 {
+      position: absolute;
+      left: 50%;
+      width: 100px;
+      background-color: coral;
+    }
+
+    .section2 {
+      background: green;
+    }
+
+    .section3 {
+      background: blue;
+    }
+
+    .section4 {
+      background: deeppink;
+    }
+
+    footer {
+      width: 100%;
+      height: 1000px;
+      background: #000;
+    }
+
+    .section4-item {
+      width: 50px;
+      height: 50px;
+      background-color: chartreuse;
+    }
+
+    .section3,
+    .section4,
+    .section1,
+    .section4-item,
+    .anim,
+    .anim2 {
+      height: 200px;
+    }
+
+
+
+    .paginItem {
+      width: 20px;
+      height: 4px;
+      border-radius: 5px;
+      outline: none;
+    }
+
+    .mySwiper {
+      overflow: hidden;
+    }
+
+    .mySwiper .swiper-pagination {
+      width: 1200px;
+      left: 50%;
+      transform: translate(-50%);
+      bottom: 100px;
+    }
+
+    .swiper-slide {
+      height: 500px;
+    }
+
+    .box1-item {
+      width: 200px;
+      height: 200px;
+      opacity: 0;
+    }
+
+    .shake {
+      animation: shake 500ms ease-in-out;
+    }
+
+    .box1-item:hover {
+      animation: shake 500ms ease-in-out;
+    }
+
+    @keyframes shake {
+
+      10%,
+      90% {
+        transform: translate3d(-1px, 0, 0);
+      }
+
+      20%,
+      80% {
+        transform: translate3d(+2px, 0, 0);
+      }
+
+      30%,
+      70% {
+        transform: translate3d(-3px, 0, 0);
+      }
+
+      40%,
+      60% {
+        transform: translate3d(+3px, 0, 0);
+      }
+
+      50% {
+        transform: translate3d(-3px, 0, 0);
+      }
+    }
+
+    .title1 {
+      height: 20vh;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      opacity: 0;
+      padding-top: 200px;
+    }
+
+    .box2-l {
+      width: 40%;
+      opacity: 0;
+    }
+
+    .box2-l h1 {
+      font-size: 46px;
+      line-height: 1.4;
+    }
+
+    .box2-r {
+      width: 55%;
+      opacity: 0;
+      height: 300px;
+      background-color: cornflowerblue;
+      position: relative;
+    }
+
+    .box2-r-i {
+      position: absolute;
+      width: 8%;
+      height: 12%;
+    }
+
+    .box2-r-1 {
+      background-color: darkorange;
+      top: 35%;
+      left: 35%;
+    }
+
+    .box2-r-2 {
+      background-color: crimson;
+      top: 20%;
+      left: 25%;
+    }
+
+    .box2-r-3 {
+      background-color: darkmagenta;
+      top: 50%;
+      left: 24%;
+    }
+
+    .box2 {
+      height: 100vh;
+    }
+
+    .box3 h1 {
+      text-align: center;
+      font-size: 60px;
+      font-weight: bold;
+      line-height: 1.4;
+    }
+
+    .box3 h6 {
+      text-align: center;
+      font-size: 24px;
+      line-height: 1.4;
+      margin-bottom: 50px;
+    }
+
+    .box3 {
+      height: 100vh;
+    }
+
+    .box3-c {
+      height: 500px;
+      background-color: violet;
+      opacity: 0;
+      position: relative;
+      margin-top: 50px;
+    }
+
+    .box3-c-mask {
+      position: absolute;
+      right: -30px;
+      top: 60px;
+      width: 300px;
+      height: 300px;
+      background-color: white;
+      z-index: 11;
+    }
+
+    .box3-t {
+      opacity: 0;
+    }
+
+
+    /* CSS代码 */
+    .switch-box {
+      width: 40px;
+    }
+
+    .switch-box .switch {
+      /* 隐藏checkbox默认样式 */
+      display: none;
+    }
+
+    .switch-box label {
+      /* 通过label扩大点击热区 */
+      position: relative;
+      display: block;
+      margin: 1px;
+      height: 20px;
+      cursor: pointer;
+    }
+
+    .switch-box label::before {
+      /* before设置前滚动小圆球 */
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -8px;
+      margin-left: -8px;
+      width: 16px;
+      height: 16px;
+      border-radius: 100%;
+      background-color: #fff;
+      box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.06);
+      /* 通过transform、transition属性控制元素过渡进而形成css3动画 */
+      -webkit-transform: translateX(-9px);
+      -moz-transform: translateX(-9px);
+      transform: translateX(-9px);
+      -webkit-transition: all 0.3s ease;
+      -moz-transition: all 0.3s ease;
+      transition: all 0.3s ease;
+    }
+
+    .switch-box .switch:checked~label::before {
+      /* 语义：被选中的类名为"switch"元素后面的label元素里的伪类元素，进行更改css样式 */
+      /* 形成伪类结构选择器：":"冒号加布尔值"checked" */
+      /* " Ele1 ~ Ele2 "波浪号在css的作用：连接的元素必须有相同的父元素，选择出现在Ele1后的Ele2（但不必跟在Ele1，也就是说可以并列）  */
+      -webkit-transform: translateX(9px);
+      -moz-transform: translateX(9px);
+      transform: translateX(9px);
+    }
+
+    .switch-box label::after {
+      /* after设置滚动前背景色 */
+      content: "";
+      display: block;
+      border-radius: 10px;
+      height: 20px;
+      background-color: #dcdfe6;
+      -webkit-transition: all 0.3s ease;
+      -moz-transition: all 0.3s ease;
+      transition: all 0.3s ease;
+    }
+
+    .switch-box .switch:checked~label::after {
+      background-color: #409eff;
+    }
+
+    .box3-c-icon {
+      margin-top: 50px;
+      height: 70px;
+      position: relative;
+    }
+
+    .box3-close {
+      position: absolute;
+      top: 0px;
+      left: 50%;
+      transform: translate(-50%);
+      width: 50px;
+      height: 50px;
+      background-color: red;
+      z-index: 11;
+    }
+
+    .box3-open {
+      position: absolute;
+      top: 0px;
+      left: 50%;
+      transform: translate(-50%);
+      width: 50px;
+      height: 50px;
+      background-color: forestgreen;
+      z-index: 10;
+    }
+
+    .box3-c-text {
+      text-align: center;
+    }
+
+    .btnOpen {
+      position: absolute;
+      right: -80px;
+      top: 3px;
+      animation: guide .8s ease infinite alternate;
+    }
+
+    @keyframes guide {
+      from {
+        right: -65px;
+
+      }
+
+      to {
+        right: -80px;
+      }
+    }
+
+    .box3-advertising1 {
+      position: absolute;
+      right: 45%;
+      bottom: 0px;
+      width: 38%;
+      height: 50%;
+      background-color: darkgreen;
+    }
+
+    .box3-advertising2 {
+      position: absolute;
+      right: 20%;
+      bottom: 30%;
+      width: 38%;
+      height: 50%;
+      background-color: darkred;
+    }
+
+    .box3-advertising3 {
+      position: absolute;
+      right: 30%;
+      bottom: 10%;
+      width: 10%;
+      height: 10%;
+      background-color: gold;
+    }
+
+    .box4 {
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .title4 {
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      opacity: 0;
+    }
+
+    .box4-pc {
+      width: 600px;
+      height: 500px;
+      background-color: skyblue;
+    }
+
+    .box4-icon1 {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      background-color: orange;
+      top: 166px;
+      left: 170px;
+    }
+
+    .box4-icon2 {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      background-color: orangered;
+      top: 190px;
+      left: 354px;
+    }
+
+    .box4-icon3 {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      background-color: palegoldenrod;
+      top: 295px;
+      left: 254px;
+    }
+
+    .box4-c,
+    .box4-text {
+      opacity: 0;
+    }
+
+    .box4-text h2 {
+      font-size: 60px;
+      font-weight: bold;
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    .box4-text p {
+      text-align: center;
+      line-height: 1.4;
+      font-size: 16px;
+    }
+
+    .box5 {
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .box5-web {
+      margin-top: 80px;
+      width: 500px;
+      height: 850px;
+      background-color: dimgrey;
+      z-index: 12;
+    }
+
+    .box5-r-t {
+      margin-left: 30px;
+      width: 600px;
+    }
+
+    .box5-r-t h1 {
+      font-size: 60px;
+      line-height: 1.4;
+    }
+
+    .box5-r-t p {
+      font-size: 16px;
+      margin-top: 30px;
+      line-height: 1.6;
+    }
+
+    .box5-pc {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%);
+      height: 100%;
+      opacity: 0;
+      width: 80%;
+      z-index: 11;
+      background-color: lightcoral;
+    }
+
+    .down {
+      position: absolute;
+      left: 40px;
+      top: 40%;
+      width: 20px;
+      height: 20px;
+      background-color: hotpink;
+    }
+
+    .progress {
+      position: absolute;
+      left: 100px;
+      top: 45%;
+      width: 350px;
+      height: 8px;
+      background-color: white;
+      display: none;
+    }
+
+    .progress2 {
+      position: absolute;
+      left: 100px;
+      top: 45%;
+      width: 0px;
+      height: 8px;
+      background-color: darkturquoise;
+    }
+
+    .box5-guide {
+      position: absolute;
+      left: -100px;
+      top: 40%;
+      animation: guide2 .8s ease infinite alternate;
+    }
+
+    @keyframes guide2 {
+      from {
+        left: -65px;
+      }
+
+      to {
+        left: -80px;
+      }
+    }
+
+    .box5-message {
+      position: absolute;
+      bottom: 50px;
+      right: 100px;
+      background-color: springgreen;
+      width: 150px;
+      height: 100px;
+      opacity: 0;
+    }
+
+    .box6 {
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .title6 {
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      opacity: 0;
+    }
+
+    .box6-c {
+      opacity: 0;
+      width: 1200px;
+      height: 600px;
+      margin-top: 200px;
+      background-color: skyblue;
+    }
+
+    .box6-app1 {
+      position: absolute;
+      width: 300px;
+      height: 240px;
+      background-color: orange;
+      top: 30px;
+      left: 150px;
+      opacity: 0;
+    }
+
+    .box6-app2 {
+      position: absolute;
+      width: 300px;
+      height: 240px;
+      background-color: orange;
+      top: 30px;
+      right: 150px;
+      opacity: 0;
+    }
+
+    .box6-app3 {
+      position: absolute;
+      width: 300px;
+      height: 240px;
+      background-color: orange;
+      bottom: 30px;
+      left: 150px;
+      opacity: 0;
+    }
+
+    .box6-app4 {
+      position: absolute;
+      width: 300px;
+      height: 240px;
+      background-color: orange;
+      bottom: 30px;
+      right: 150px;
+      opacity: 0;
+    }
+
+    .main-area {
+      width: 1200px;
+      flex: 0 0 1200px;
+    }
+
+    /* 手机端样式 */
+    @media screen and (max-width: 1200px) {
+      html {
+        font-size: 12px;
+      }
+    }
+
+    /* 平板样式 */
+    @media screen and (min-width: 620px) {
+      html {
+        font-size: 14px;
+      }
+    }
+
+    /* pc样式 */
+    @media screen and (min-width: 1200px) {
+      html {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- <header></header> -->
+  <div class="mySwiper relative">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">1</div>
+      <div class="swiper-slide">2</div>
+      <div class="swiper-slide">3</div>
+      <div class="swiper-slide">4</div>
+    </div>
+    <div class="swiper-pagination flex-start">
+    </div>
+  </div>
+  <div class="flex-center">
+    <div class="flex-space-between main-area">
+      <div class="box1-item " style="background-color: steelblue;">2233</div>
+      <div class="box1-item" style="background-color: teal;">4455</div>
+      <div class="box1-item" style="background-color: tomato;">6677</div>
+    </div>
+  </div>
+
+  <div class="flex-center">
+    <div class="box2 main-area">
+      <div class="title1">做终生学习实践者</div>
+      <div class="flex-space-between">
+        <div class="box2-l">
+          <h1>教育学习应用<br />挖掘潜能无限</h1>
+          <p>在这里，阿巴阿巴阿巴阿巴阿巴<br />阿巴阿巴阿巴阿巴阿巴阿巴<br />阿巴阿巴阿巴阿巴</p>
+        </div>
+        <div class="box2-r">
+          <div class="box2-r-i box2-r-1">图标1</div>
+          <div class="box2-r-i box2-r-2">图标2</div>
+          <div class="box2-r-i box2-r-3">图标3</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="flex-center">
+    <div class="box3 main-area">
+      <div class="box3-t">
+        <h1>青少年保护，做孩子的保护神</h1>
+        <h6>浏览器阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴<br>阿巴阿巴阿巴阿巴阿巴阿巴</h6>
+      </div>
+      <div class="box3-c">
+        <div class="box3-c-mask">
+          <div class="flex-space-between relative">
+            <p>青少年上网保护</p>
+            <div class="switch-box">
+              <input id="switchButton" type="checkbox" class="switch" />
+              <label for="switchButton"></label>
+            </div>
+            <div class="btnOpen">
+              <p>点击开启</p>
+            </div>
+          </div>
+          <div class="box3-c-icon">
+            <div class="box3-close"></div>
+            <div class="box3-open"></div>
+          </div>
+
+          <p class="box3-c-text">广告拦截已关闭</p>
+        </div>
+        <div class="box3-advertising1"></div>
+        <div class="box3-advertising2"></div>
+        <div class="box3-advertising3"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="box4">
+    <h1 class="title4">随时随地皆可办公</h1>
+    <div class="box4-c flex-center">
+      <div class="relative">
+        <div class="box4-pc"></div>
+        <div class="box4-icon1"></div>
+        <div class="box4-icon2"></div>
+        <div class="box4-icon3"></div>
+      </div>
+    </div>
+    <div class="box4-text">
+      <h2>原生应用，全面覆盖</h2>
+      <p>浏览器阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴</p>
+    </div>
+  </div>
+
+  <div class="box5 relative">
+    <div class="box5-pc relative">
+      <div class="box5-message"></div>
+    </div>
+    <div class="flex-center">
+      <div class="box5-web relative">
+        <div class="box5-guide">
+          <p>点击发送</p>
+        </div>
+        <div class="down"></div>
+        <div class='progress'></div>
+        <div class="progress2"></div>
+      </div>
+      <div class="box5-r-t">
+        <h1>不同设备，跨屏互联</h1>
+        <p>
+          浏览器阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="box6">
+    <h1 class="title6">来，解锁你的摸鱼姿势</h1>
+    <div class="flex-center">
+      <div class="box6-c relative">
+        <div class="box6-app1"></div>
+        <div class="box6-app2"></div>
+        <div class="box6-app3"></div>
+        <div class="box6-app4"></div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+  <div class="section3">section3</div>
+  <div class="section4">section4
+    <div class="section4-item">section4-item</div>
+  </div>
+  <input type="button" id="restartBtn" value="restart()" title="重新播放">
+
+  <div class="section1">section1
+    <div class="anim">anim</div>
+    <div class="anim2">anim2</div>
+  </div>
+  <div class="section2">section2</div>
+  <footer></footer>
+  <script>
+
+    new Swiper('.mySwiper', {
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+        renderBullet: function (index, className) {
+          return '<span class="paginItem ' + className + '">' + "</span>";
+        }
+      }
+    });
+    let is = true;
+    window.addEventListener('scroll', function (e) {
+      if (window.scrollY > 200 && is) {
+        is = false;
+        TweenMax.staggerTo(".box1-item", 1, { opacity: 1 }, .5);
+        document.querySelectorAll('.box1-item').forEach((dom, i) => {
+          setTimeout(() => {
+            dom.classList.add('shake');
+            setTimeout(() => {
+              dom.classList.remove('shake');
+            }, 500)
+          }, 600 * (i + 1));
+        })
+      }
+
+    })
+
+
+
+    // 1.创建一个控制器对象Controller
+    let Controller = new ScrollMagic.Controller();
+
+
+    let scene2 = new ScrollMagic.Scene({
+      // offset: 500,
+      triggerElement: '.box2', // 当前场景从哪个元素开始
+      triggerHook: 0, // 0~1  定义触发钩子相对于视口的位置 => 0.5 距离视口的50%高度
+      duration: '2400',
+      reverse: true
+    });
+    scene2.setPin(".box2");
+    let bt = new TimelineMax();
+    let m1 = TweenMax.to('.title1', 1, {
+      opacity: 1, y: 200, fontSize: '3.75rem',
+    });
+    bt.add([
+      m1,
+      TweenMax.to('.title1', 1, {
+        opacity: 0,
+        delay: 1,
+      }),
+      TweenMax.fromTo(".box2-r", 2, { x: 150 }, {
+        opacity: 1,
+        delay: 2,
+      }),
+      new TweenMax('.box2-r-1', 2, {
+        top: -200,
+        x: -10,
+        delay: 4.4
+      }),
+      new TweenMax('.box2-r-2', 2, {
+        top: -160,
+        x: -50,
+        delay: 4.4
+      }),
+      new TweenMax('.box2-r-3', 2, {
+        top: -120,
+        x: -160,
+        delay: 4.4
+      }),
+      new TweenMax('.box2-l', 2, {
+        opacity: 1,
+        delay: 7
+      })
+    ])
+
+    scene2.setTween(bt);
+    Controller.addScene(scene2);
+
+
+    let scene3 = new ScrollMagic.Scene({
+      // offset: 500,
+      triggerElement: '.box3', // 当前场景从哪个元素开始
+      triggerHook: 0, // 0~1  定义触发钩子相对于视口的位置 => 0.5 距离视口的50%高度
+      duration: '800',
+      reverse: true
+    });
+    scene3.setPin(".box3");
+    let bt3 = new TimelineMax();
+    bt3.add([
+      new TweenMax('.box3-t', 2, { y: 50, opacity: 1 }),
+      new TweenMax('.box3-c', 2, { y: 50, opacity: 1, delay: 2.5 }),
+    ])
+    scene3.setTween(bt3);
+    Controller.addScene(scene3);
+    let box3Css1 = TweenMax.to('.box3-advertising1', .5, {
+      opacity: '0',
+      right: '0%',
+      y: -180,
+      scale: .3,
+      paused: true
+    })
+    let box3Css2 = TweenMax.to('.box3-advertising2', .5, {
+      opacity: '0',
+      right: '0%',
+      y: -80,
+      scale: .3,
+      paused: true
+    })
+    let box3Css3 = TweenMax.to('.box3-advertising3', .5, {
+      opacity: '0',
+      right: 0,
+      y: -180,
+      scale: .3,
+      paused: true
+    })
+
+    let box3Open = TweenMax.to('.box3-open', .5, { opacity: 1 });
+    let box3Close = TweenMax.to('.box3-close', .5, { opacity: 0 });
+    document.querySelector('#switchButton').addEventListener('change', (e) => {
+      if (e.target.checked) {
+        box3Open.restart();
+        box3Close.restart();
+        box3Css1.restart();
+        box3Css2.restart();
+        box3Css3.restart();
+      } else {
+        box3Open.reverse();
+        box3Close.reverse();
+        box3Css1.reverse();
+        box3Css2.reverse();
+        box3Css3.reverse();
+      }
+    })
+
+
+    let scene4 = new ScrollMagic.Scene({
+      // offset: 500,
+      triggerElement: '.box4', // 当前场景从哪个元素开始
+      triggerHook: 0, // 0~1  定义触发钩子相对于视口的位置 => 0.5 距离视口的50%高度
+      duration: '2000',
+      reverse: true
+    });
+    scene4.setPin(".box4");
+    let m4 = TweenMax.fromTo('.title4', 1, {
+      opacity: 0, y: 400,
+    }, {
+      opacity: 1, fontSize: '3.75rem',
+    });
+    let bt4 = new TimelineMax();
+    bt4.add([
+      m4,
+      new TweenMax(".title4", 1, {
+        y: 150,
+        fontSize: '3rem',
+        delay: 1.5
+      }),
+      TweenMax.fromTo('.box4-c', 1, {
+        y: 170
+      }, {
+        opacity: 1,
+        delay: 2.5
+      }),
+      TweenMax.to('.box4-pc', 1, {
+        opacity: 0,
+        scale: .1,
+        delay: 3.5
+      }),
+      TweenMax.to('.title4', 1, {
+        opacity: 0,
+        delay: 3.5
+      }),
+      TweenMax.to('.box4-icon1', 1, {
+        scale: 2,
+        x: -100,
+        y: -50,
+        delay: 3.5
+      }),
+      TweenMax.to('.box4-icon2', 1, {
+        scale: 2,
+        x: 100,
+        y: -50,
+        delay: 3.5
+      }),
+      TweenMax.to('.box4-icon3', 1, {
+        scale: 2,
+        y: 100,
+        y: -50,
+        delay: 3.5
+      }),
+      TweenMax.to('.box4-text', 2, {
+        opacity: 1,
+        y: -160,
+        delay: 4.5
+      }),
+
+    ])
+    scene4.setTween(bt4);
+    Controller.addScene(scene4);
+
+
+
+    let scene5 = new ScrollMagic.Scene({
+      // offset: 500,
+      triggerElement: '.box5', // 当前场景从哪个元素开始
+      triggerHook: 0, // 0~1  定义触发钩子相对于视口的位置 => 0.5 距离视口的50%高度
+      duration: '100%',
+      reverse: true
+    });
+    scene5.setPin(".box5");
+    let m5 = TweenMax.fromTo('.box5-web', 1, {
+      opacity: 0, y: 100,
+    }, {
+      opacity: 1, y: 0,
+    });
+    let bt5 = new TimelineMax();
+    bt5.add([
+      m5,
+      TweenMax.fromTo('.box5-r-t', 1, {
+        opacity: 0,
+        y: 100
+      }, {
+        opacity: 1,
+        y: 0,
+        delay: 1.5
+      }),
+    ])
+    scene5.setTween(bt5);
+    Controller.addScene(scene5);
+    let isClick = false, isState = 'DURING';
+    document.querySelector('.down').addEventListener('click', () => {
+      isClick = true;
+      if (isState == 'AFTER') {
+        scene5.remove();
+        scene5.removePin();
+      }
+      scene5.reverse(false); // 关闭反向动画
+
+      TweenMax.to('.box5-web', 1, {
+        y: -100,
+        scale: .7,
+      })
+      TweenMax.to('.box5-r-t', 1, {
+        opacity: 0,
+      })
+
+      TweenMax.to('.box5-pc', 1, {
+        opacity: 1,
+        onComplete: function () {
+          document.querySelector('.progress').style.display = "block";
+        }
+      })
+      TweenMax.to('.progress2', 2, {
+        width: 350,
+        delay: 1.3,
+      })
+      TweenMax.to('.box5-message', 1, {
+        opacity: 1,
+        bottom: 100,
+        delay: 3.3,
+      })
+    })
+    scene5.on('end', (scrollDirect) => {
+      isState = scrollDirect.state;
+      if (isClick) {
+        scene5.remove();
+        scene5.removePin();
+      }
+    })
+
+
+
+    let scene6 = new ScrollMagic.Scene({
+      // offset: 500,
+      triggerElement: '.box6', // 当前场景从哪个元素开始
+      triggerHook: 0, // 0~1  定义触发钩子相对于视口的位置 => 0.5 距离视口的50%高度
+      duration: '2000',
+      reverse: true
+    });
+    scene6.setPin(".box6");
+    let m6 = TweenMax.fromTo('.title6', 1, {
+      opacity: 0, y: 400,
+    }, {
+      opacity: 1, fontSize: 60,
+    });
+    let bt6 = new TimelineMax();
+    bt6.add([
+      m6,
+      new TweenMax(".title6", 1, {
+        y: 150,
+        fontSize: 50,
+        delay: 1.5
+      }),
+      TweenMax.to('.box6-c', 1, {
+        opacity: 1,
+        delay: 2.5
+      }),
+      TweenMax.fromTo('.box6-app1', 1, {
+        opacity: 0,
+        scale: 2,
+      }, {
+        opacity: 1,
+        scale: 1,
+        delay: 3.5
+      }),
+      TweenMax.fromTo('.box6-app2', 1, {
+        opacity: 0,
+        scale: 2,
+      }, {
+        opacity: 1,
+        scale: 1,
+        delay: 5.5
+      }),
+      TweenMax.fromTo('.box6-app3', 1, {
+        opacity: 0,
+        scale: 2,
+      }, {
+        opacity: 1,
+        scale: 1,
+        delay: 6.5
+      }),
+      TweenMax.fromTo('.box6-app4', 1, {
+        opacity: 0,
+        scale: 2,
+      }, {
+        opacity: 1,
+        scale: 1,
+        delay: 7.5
+      }),
+
+    ])
+    scene6.setTween(bt6);
+    Controller.addScene(scene6);
+
+
+
+
+
+
+
+
+    // 2.创建一个场景对象scene
+    let scene = new ScrollMagic.Scene({
+      // offset: 500,
+      triggerElement: '.section1', // 当前场景从哪个元素开始
+      triggerHook: 0, // 0~1  定义触发钩子相对于视口的位置 => 0.5 距离视口的50%高度
+      duration: 1800,
+      reverse: true
+    });
+
+
+
+    // 告诉ScrollMagic哪一个元素需要固定
+    scene.setPin(".section1");
+
+    // 创建一个GSAP动画
+    let tm = TweenMax.to(".anim", 3, {
+      // width: '100%',
+      // height: 200,
+      x: '300%',
+      y: 0
+    });
+    // scene.setTween(tm);
+    let tm2 = TweenMax.to(".anim2", 3, {
+      // width: '100%',
+      // height: 200,
+      left: '0%',
+      y: 200,
+      opacity: .1,
+      borderRadius: '50%',
+      fontSize: 40
+    });
+    scene.setTween([tm, tm2])
+
+    //场景条件满足后，这个动画就可以执行了。给anim 添加动画，动画效果会随着滚动条的滚动而逐渐变化
+    // scene.setTween(".anim", 3, {
+    //   // width:'100%',
+    //   // height:200,
+    //   x: '300%',
+    //   y: 0
+    // });
+    // 3.将场景对象添加到控制器对象
+    Controller.addScene([scene]);
+
+
+
+    // let aa = new TweenMax('.section4-item', 2, {
+    //   x: 400,
+    //   alpha: 0.3,
+    // });
+    var tween = TweenMax.to('.section4-item', 3, {
+      x: "632px",
+      ease: Linear.easeNone,
+      paused: true, // 动画将在创建时立即暂停
+    });
+    // tween.pause();
+
+    var restartBtn = document.getElementById("restartBtn");
+    restartBtn.onclick = function () {
+      //重新开始.
+      tween.restart();
+    }
+  </script>
+</body>
+
+</html>
